@@ -26,7 +26,7 @@ const App = function() {
     <div id='app' className='app v'>
       <div id='box'/>
       <div className='main h'>
-        <div className='v'>
+        <div className='leftBar v'>
           <Earthpunk/>
           <Contact/>
         </div>
