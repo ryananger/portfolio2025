@@ -15,7 +15,7 @@ const Projects = function() {
   }
 
   return (
-    <div id='projects'>
+    <div id='projects' className='v'>
       <Project title='puzzles' info={infos.puzzles} src='/images/puzzles.png' url='https://15puzzl.earthpunk.art/'/>
       <Project title='communitii' info={infos.communitii} src='/images/communitii.png' url='http://communitii.earthpunk.art/'/>
       <Project title='techTree Academy' info={infos.techTree} src='/images/techtree.png' url='https://techtree.earthpunk.art/'/>

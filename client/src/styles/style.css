@@ -178,6 +178,10 @@ textarea {
   cursor: pointer;
 }
 
+.projectBar:hover {
+  box-shadow: 0 2px white;
+}
+
 .projectBar p {
   margin: 4px;
 }
@@ -208,10 +212,24 @@ textarea {
   border-radius: 4px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1000px) {
   .app {
     overflow: unset;
     overflow-x: hidden;
     justify-content: flex-start;
+  }
+
+  #earthpunk,
+  #about,
+  .projectBar,
+  #contact {
+    width: 90%;
+  }
+
+  .projectImage {
+    width: 90%;
+    height: 200px;
+    margin: 1vh;
+    margin-bottom: 2vh;
   }
 }
