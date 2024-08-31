@@ -13,7 +13,7 @@ const ContactForm = function() {
   const handleSubmit = function(e) {
     e.preventDefault();
 
-    emailjs.sendForm('default_service', 'template_gd8skyj', form.current)
+    emailjs.sendForm('contact_service', 'default_template', form.current)
       .then((result) => {
         console.log(result.text);
       }, (error) => {
