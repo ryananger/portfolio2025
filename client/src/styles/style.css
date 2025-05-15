@@ -10,15 +10,16 @@
   --cream: rgb(255, 239, 229);
 
   --lightText: rgb(255, 232, 217);
-  --trCream: rgba(255, 232, 217, 0.747);
+  --trCream: rgba(255, 249, 245, 0.747);
+  --purpleText: #a023d5;
   --darkText: #3d1a15;
 
   --shadow: #39161096;
 }
 
 html {
-  background: radial-gradient(circle at bottom left, #c2edbaa3, transparent 40%), radial-gradient(circle at top right, #ffc2c2bd, transparent);
-  background-color: #a2d7a5;
+  background: radial-gradient(circle at bottom left, #c2edbaa3, transparent 50%), radial-gradient(circle at bottom right, #c2e5ff61, transparent 50%);
+  background-color: var(--trCream);
 }
 
 html, body, #root, .app {
@@ -31,12 +32,16 @@ html, body, #root, .app {
   margin: 0;
   height: 100%;
   width: 100%;
-  font-size: 1.8vh;
+  font-size: 1rem;
   font-family: Jost, sans-serif;
+  color: var(--purpleText);
+}
+
+h1 {
   color: var(--darkText);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   margin: 0;
 }
 
@@ -65,6 +70,11 @@ a:hover,
 a:visited {
   color: unset;
   text-decoration: none;
+}
+
+.app {
+  justify-content: flex-start;
+  overflow: auto;
 }
 
 /* --- */
@@ -120,84 +130,92 @@ textarea {
   max-height: 120px;
 }
 
-/* INFO */
-
-#box {
-  margin: 4vh;
-  position: fixed;
-  z-index: -1;
-  width: 80svw;
-  height: 95svh;
-  border: 1px solid #ffffff9e;
+img {
+  box-shadow: 0 2px 3px #6c2c9c82;
 }
 
 .main {
   padding: 4vh;
 }
 
-.anchor {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  justify-content: space-between;
-  padding: 2vh;
+/* HEADER */
+
+.header img {
+  width: 240px;
+  border-radius: 100%;
+  margin-right: 2svw;
 }
 
 .info {
-  background: #ffffff25;
-  width: 720px;
-  max-width: 100%;
-  border-radius: 12px;
-  align-items: flex-start;
-  padding: 2vh;
-  margin: 2vh;
-}
-
-.link {
-  cursor: pointer;
-}
-
-.leftBar {
-  height: 100%;
+  margin-top: 2svh;
+  height: calc(240px - 4svh);
   justify-content: space-between;
+  align-items: unset;
 }
 
-#earthpunk {
-  width: 280px;
+.title, .contact {
+  align-items: unset;
 }
 
-#contact {
-  position: relative;
-  width: 280px;
+/* INFO */
+
+.projects {
+  width: 80%;
+  margin-top: 4svh;
+  border-top: 1px solid;
+}
+
+.project {
+  width: 100%;
+  padding: 4svh;
+  border-bottom: 1px solid;
   align-items: center;
-  text-align: center;
 }
 
-.projectBar {
-  position: relative;
-  cursor: pointer;
+.project h2 {
+    color: var(--darkText);
+    margin-bottom: 2vh;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: font-size 0.25s;
 }
 
-.projectBar:hover {
-  box-shadow: 0 2px white;
+.projectInfo {
+  width: 100%;
+  margin: 2svh;
+  margin-top: -4svh;
 }
 
-.projectBar p {
-  margin: 4px;
+.projectInfo h2:hover {
+  font-size: 1.8rem;
 }
 
 .projectImage {
+  margin: 2svh;
+  max-width: 45%;
   object-fit: cover;
   border-radius: 6px;
-  height: 120px;
-  aspect-ratio: 1.5;
-  box-shadow: 0px 4px 0px 0px #936761;
-  border: 1px solid #936761;
   box-sizing: border-box;
+  cursor: zoom-in;
 }
 
-.texture {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+.imageModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #241c2773;
+}
+
+.zoomImage {
+  position: absolute;
+  z-index: 10;
+  cursor: zoom-out;
+  max-width: 80%;
+  border-radius: 6px;
 }
 
 ::-webkit-scrollbar {
@@ -208,28 +226,70 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #ffffff9d;
+  background-color: var(--purpleText);
   border-radius: 4px;
 }
 
-@media (max-width: 1000px) {
+@media (orientation: portrait) {
   .app {
-    overflow: unset;
     overflow-x: hidden;
     justify-content: flex-start;
+
+    font-size: 0.8rem;
   }
 
-  #earthpunk,
-  #about,
-  .projectBar,
-  #contact {
-    width: 90%;
+  .main {
+    padding: 2svh;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header img {
+    margin: 0;
+    width: 160px;
+  }
+
+  .info {
+    height: 140px;
+  }
+
+  .projects {
+    width: 100%;
+  }
+
+  .project {
+    padding: 2svh;
+    flex-direction: column;
+  }
+
+  .projectInfo h2:hover {
+    font-size: 1.5rem;
   }
 
   .projectImage {
-    width: 90%;
-    height: 200px;
+    max-width: 100%;
     margin: 1vh;
-    margin-bottom: 2vh;
+    margin-bottom: 4vh;
+  }
+}
+
+@media (orientation: landscape) and (max-width: 1200px) {
+  .app {
+    font-size: 0.8rem;
+  }
+
+  .header img {
+    width: 160px;
+  }
+
+  .info {
+    height: 140px;
+  }
+
+  .projects {
+    width: 95%;
   }
 }
