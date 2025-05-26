@@ -43,7 +43,7 @@ const App = function() {
 
   var renderAboutMe = function() {
     return (
-      <p className='aboutMe v'>
+      <p className={`aboutMe v ${visible ? 'visible' : 'hidden'}`}>
         Welcome! I'm Ry, a full-stack software engineer, and this is my portfolio. 
         Projects here were developed with React, React Native, Node.js, MongoDB, and hosted on AWS.
         I also have experience with Vue and Angular, SQL, some Python, and I've worked with a number of API's for different purposes, 
