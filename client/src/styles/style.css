@@ -10,8 +10,8 @@
   --cream: rgb(255, 239, 229);
 
   --lightText: rgb(255, 232, 217);
-  --trCream: rgba(255, 249, 245, 0.747);
-  --purpleText: #a023d5;
+  --trCream: rgba(255, 248, 243, 0.918);
+  --purpleText: #a099a3;
   --darkText: #3d1a15;
 
   --shadow: #39161096;
@@ -37,11 +37,11 @@ html, body, #root, .app {
   color: var(--purpleText);
 }
 
-h1 {
+h2 {
   color: var(--darkText);
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
@@ -74,7 +74,6 @@ a:visited {
 
 .app {
   justify-content: flex-start;
-  overflow: auto;
 }
 
 /* --- */
@@ -82,12 +81,14 @@ a:visited {
 .visible {
   visibility: visible;
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transition: height 0.5s, width 0.5s, opacity 0.5s ease;
 }
 
 .hidden {
   visibility: hidden;
   opacity: 0;
+  height: 0;
+  width: 0;
   transition: visibility 0s 1s, opacity 1s ease;
 }
 
@@ -135,29 +136,97 @@ img {
 }
 
 .main {
-  padding: 4vh;
+  z-index: 0;
+  width: 570px;
+  height: 200px;
+  margin: 1vh;
+  background: linear-gradient(0deg, #ffffffa3, #ffffff61);
+  padding: 1vh;
+  border-radius: 160px 24px 24px 160px;
+  border: 1px solid white;
+  box-shadow: 0 2px 3px #6c2c9c36;
+  position: relative;
+  transition: width 0.5s, height 0.5s, border-radius 0.5s;
+}
+
+.closed {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
 }
 
 /* HEADER */
 
+.header {
+  height: 200px;
+  align-items: center;
+}
+
 .header img {
-  width: 240px;
+  width: 180px;
   border-radius: 100%;
-  margin-right: 2svw;
+  margin-right: 1svw;
 }
 
 .info {
-  margin-top: 2svh;
-  height: calc(240px - 4svh);
+  margin: 2svh 0;
+  height: calc(200px - 4svh);
   justify-content: space-between;
   align-items: unset;
+  border-left: 1px solid;
+  padding-left: 2vh;
 }
 
 .title, .contact {
   align-items: unset;
 }
 
-/* INFO */
+.aboutMe {
+  width: 570px;
+  margin-top: 12svh;
+  padding: 1vh;
+  text-align: justify;  
+}
+
+/* PROJECTS */
+
+.projectButtons {
+  position: absolute;
+  bottom: -44px;
+  right: 2vh;
+  width: 240px;
+  height: 36px;
+  align-items: center;
+}
+
+.projectButtonContainer {
+  width: 36px;
+}
+
+.projectButton {
+  width: 24px;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  transition: width 0.5s;
+}
+
+.projectButton.selected {
+  width: 12px;
+}
+
+.projectButton.hidden {
+  width: 2px;
+}
+
+.projectButton:hover {
+  width: 36px;
+  transition: width 0.25s;
+  cursor: pointer;
+}
+
+.projectButton.selected:hover {
+  width: 12px;
+}
 
 .projects {
   width: 80%;
@@ -166,35 +235,43 @@ img {
 }
 
 .project {
-  width: 100%;
+  height: 100%;
   padding: 4svh;
-  border-bottom: 1px solid;
   align-items: center;
+  justify-content: center;
 }
 
 .project h2 {
-    color: var(--darkText);
-    margin-bottom: 2vh;
-    height: 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    transition: font-size 0.25s;
+  color: var(--darkText);
+  margin-bottom: 2vh;
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: font-size 0.25s;
 }
 
 .projectInfo {
-  width: 100%;
+  flex: none;
+  width: 320px;
   margin: 2svh;
   margin-top: -4svh;
+  align-items: flex-start;
 }
 
 .projectInfo h2:hover {
   font-size: 1.8rem;
 }
 
-.projectImage {
+.projectImageContainer {
   margin: 2svh;
-  max-width: 45%;
+  width: calc(80% - 320px - 4svh);
+  max-height: calc(100svh - 320px);
+}
+
+.projectImage {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
   border-radius: 6px;
   box-sizing: border-box;
@@ -203,6 +280,7 @@ img {
 
 .imageModal {
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -212,7 +290,6 @@ img {
 
 .zoomImage {
   position: absolute;
-  z-index: 10;
   cursor: zoom-out;
   max-width: 80%;
   border-radius: 6px;
@@ -233,6 +310,7 @@ img {
 @media (orientation: portrait) {
   .app {
     overflow-x: hidden;
+    overflow-y: auto;
     justify-content: flex-start;
 
     font-size: 0.8rem;
@@ -240,11 +318,17 @@ img {
 
   .main {
     padding: 2svh;
+    width: unset;
+    height: unset;
+    background: unset;
+    border: none;
+    box-shadow: none;
   }
 
   .header {
     flex-direction: column;
     align-items: center;
+    height: unset;
   }
 
   .header img {
@@ -253,20 +337,39 @@ img {
   }
 
   .info {
-    height: 140px;
+    height: 120px;
+    border: none;
+    align-items: center;
+    padding: 0;
+  }
+
+  .info * {
+    align-items: center;
   }
 
   .projects {
-    width: 100%;
+    width: 100svw;
+    margin-top: 2svh;
   }
 
   .project {
     padding: 2svh;
     flex-direction: column;
+    border-bottom: 1px solid;
+  }
+
+  .projectInfo {
+    width: unset;
   }
 
   .projectInfo h2:hover {
     font-size: 1.5rem;
+  }
+
+  .projectImageContainer {
+    width: unset;
+    max-width: 100%;
+    max-height: unset;
   }
 
   .projectImage {
@@ -281,6 +384,11 @@ img {
     font-size: 0.8rem;
   }
 
+  .main.open {
+    width: 460px;
+    height: 180px;
+  }
+
   .header img {
     width: 160px;
   }
@@ -291,5 +399,17 @@ img {
 
   .projects {
     width: 95%;
+  }
+
+  .projectInfo {
+    width: 180px;
+  }
+
+  .projectImageContainer {
+    width: calc(80% - 180px - 4svh);
+  }
+
+  .projectImage {
+    max-height: calc(100svh - 320px);
   }
 }
