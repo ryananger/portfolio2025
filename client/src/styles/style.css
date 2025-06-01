@@ -192,7 +192,7 @@ img {
 
 .projectButtons {
   position: absolute;
-  bottom: -44px;
+  bottom: -46px;
   right: 2vh;
   width: 240px;
   height: 36px;
@@ -411,5 +411,42 @@ img {
 
   .projectImage {
     max-height: calc(100svh - 320px);
+  }
+}
+
+@media (orientation: landscape) and (max-height: 800px) {
+  .app {
+    overflow-y: auto;
+  }
+  
+  .aboutMe {
+    margin: unset;
+    margin-top: 36px;
+    height: calc(100svh - 37px);
+    flex: none;
+  }
+
+  .project {
+    margin-top: 36px;
+    width: 100%;
+    height: calc(100svh - 37px);
+    flex: none;
+  }
+
+  .projectImageContainer {
+    width: unset;
+    max-height: unset;
+    max-width: 60svw;
+  }
+
+  .projectImage {
+    max-height: 80svh;
+    max-width: 60svw;
+    width: auto;
+  }
+
+  .zoomImage {
+    max-width: 95%;
+    max-height: 95%;
   }
 }
