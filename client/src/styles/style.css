@@ -421,15 +421,15 @@ img {
   
   .aboutMe {
     margin: unset;
-    margin-top: 36px;
-    height: calc(100svh - 37px);
+    margin-top: 40px;
+    height: calc(100svh - 36px);
     flex: none;
   }
 
   .project {
-    margin-top: 36px;
+    margin-top: 40px;
     width: 100%;
-    height: calc(100svh - 37px);
+    height: calc(100svh - 36px);
     flex: none;
   }
 
